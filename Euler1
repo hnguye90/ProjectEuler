@@ -1,0 +1,143 @@
+//Problems 4 - 6 on ProjectEuler
+
+public class MyClass {
+    public static void main(String args[]) {
+      int x=10;
+      int y=25;
+      int z=x+y;
+
+      //System.out.println("Sum of x+y = " + z);
+      
+      //System.out.println("largest prime factor = " + largestPrimeFactor(600851475143L));
+      /*
+      if (isPalindrome(9011109)) {
+        System.out.println("This is a palindrome 9011109");
+      }
+      
+      if (isPalindrome(9011109)) {
+          System.out.println("true");
+      } else {
+          System.out.println("false");
+      }
+      
+      int first = 0;
+      int second = 0;
+      int largest = 0;
+      
+      for (int i = 999; i >= 101; i--) {
+        for (int j = 999; j >= 101; j--) {
+          if (isPalindrome(i * j)) {
+            if (i * j > largest) {
+              largest = i * j;
+              first = i;
+              second = j;
+            }
+          }
+        }
+      }
+      
+      System.out.println("The largest palindrome is: " + first * second);
+      System.out.println("The two numbers that multiply together to make it are: " + first + " and " + second);
+      */
+      
+      System.out.println("The smallest num that is div by 1 to 20 " + smallestNumDivByAll20());
+      System.out.println("Difference of squareOfSumAll100 and sumOfSquareAll100 is " + (squareOfSumAll100() - sumOfSquareAll100()));
+      
+      int primeNum = 11;
+      System.out.println("Is this number a prime? " + primeNum);
+      if (isPrime(primeNum)) {
+          System.out.println("Yes!");
+      } else {
+          System.out.println("No!");
+      }
+      
+      System.out.println("The 10001th prime number is " + findPrimeNumN(10001));
+    }
+    
+    static int findPrimeNumN(int N) {
+        int count = 0;
+        int curPrimeNum = 0;
+        while (count <= N) {
+            curPrimeNum++;
+            if (isPrime(curPrimeNum)) {
+                count++;
+            }
+        }
+        return curPrimeNum;
+    }
+    
+    static boolean isPrime(int N) {
+        for (int i = 2; i < N; i++) {
+            if (N % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    static int sumOfSquareAll100() {
+        int sumOfSquares = 0;
+        for (int i = 1; i <= 100; i++) {
+            sumOfSquares = sumOfSquares + (i * i);
+        }
+        return sumOfSquares;
+    }
+    
+    static int squareOfSumAll100() {
+        int sumOf100 = 0;
+        for (int i = 1; i <= 100; i++) {
+            sumOf100 = sumOf100 + i;
+        }
+        return sumOf100 * sumOf100;
+    }
+    
+    static int smallestNumDivByAll20() {
+        int num = 20;
+        boolean theOne = false;
+        while (!theOne) {
+            int test = 0;
+            for (int i = 1; i <= 20; i++) {
+                if (num % i == 0) {
+                    test++;
+                } else {
+                    break;
+                }
+            }
+            if (test == 20) {
+                theOne = true;
+            } else {
+                num++;
+            }
+        }
+        return num;
+    }
+    
+    static long largestPrimeFactor(long N) {
+        long num = 2;
+        // loop till sqrt(N)
+        while ((num * num) <=N)
+            if (N % num == 0) // if num divides N evenly
+                N /= num; // divide N by num
+            else
+                num++; // increase num if it don't divide N
+        return N;
+    }
+    
+    static boolean isPalindrome(int N) {
+        // return true if is a palindrome and false if not
+        String sN = String.valueOf(N);
+        //System.out.println(sN);
+        int j = sN.length() - 1;
+        for (int i = 0; i < sN.length(); i++) {
+            //System.out.println("i " + i);
+            //System.out.println("j " + j); 
+            if (sN.charAt(i) != sN.charAt(j)) {
+                //System.out.print(sN.charAt(i));
+                //System.out.println(" " + sN.charAt(j));
+                return false;
+            }
+            j--;
+        }
+        return true;
+    }
+}
