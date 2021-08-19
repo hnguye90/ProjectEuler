@@ -1,0 +1,37 @@
+import java.util.*;
+
+public class Euler {
+    public static void main(String args[]) {
+        // how many divisors does a triangle number have?
+
+        int maxDivisors = 0;
+        int triangleSum = 0;
+        int count = 1;
+        while (maxDivisors < 500) {
+            triangleSum += count;
+            System.out.println("Current trianglesum = " + triangleSum);
+            int numDivisors1 = numDivisors(triangleSum);
+            if (maxDivisors < numDivisors1) {
+                maxDivisors = numDivisors1;
+            }
+            System.out.println("Max Divisors is currently at " + maxDivisors);
+            count++;
+        }
+
+
+        System.out.println("The answer: " + triangleSum);
+    }
+
+
+
+    // find how many divisors a given n has
+    static int numDivisors(int n) {
+        int count = 0;
+        for (int i = 1; i < n; i++) {
+            if (n % i == 0) {
+                count++;
+            }
+        }
+        return count;
+    }
+}
